@@ -3,9 +3,7 @@
 [![Build
 Status](https://travis-ci.org/portworx/brokerapi.svg?branch=master)](https://travis-ci.org/portworx/brokerapi)
 
-A Go package for building [V2 Open Service Broker
-API](https://github.com/openservicebrokerapi/servicebroker/) compliant Service
-Brokers.
+A Go package for building [V2 Open Service Broker API](https://github.com/openservicebrokerapi/servicebroker/) compliant Service Brokers.
 
 ## [Docs](https://godoc.org/github.com/portworx/brokerapi)
 
@@ -13,10 +11,9 @@ Brokers.
 
 - Go 1.7+
 - [lager](https://github.com/cloudfoundry/lager)
-- [gorilla/mux v1.6.1+](https://github.com/gorilla/mux)
+- [gorilla/mux](https://github.com/gorilla/mux)
 
-We use [dep](https://github.com/golang/dep) to manager our dependencies. Use
-`dep ensure` in order to download the required packages.
+We use [dep](https://github.com/golang/dep) to manager our dependencies. Use `dep ensure` in order to download the required packages.
 
 ## Usage
 
@@ -34,29 +31,11 @@ will not be set up, so you will have to attach them manually if required.
 
 ## Error types
 
-`brokerapi` defines a handful of error types in `service_broker.go` for some
-common error cases that your service broker may encounter. Return these from
-your `ServiceBroker` methods where appropriate, and `brokerapi` will do the
-"right thing" (™), and give Cloud Foundry an appropriate status code, as per
-the [Service Broker API
-specification](https://docs.cloudfoundry.org/services/api.html).
+`brokerapi` defines a handful of error types in `service_broker.go` for some common error cases that your service broker may encounter. Return these from your `ServiceBroker` methods where appropriate, and `brokerapi` will do the "right thing" (™), and give Cloud Foundry an appropriate status code, as per the [Service Broker API specification](https://docs.cloudfoundry.org/services/api.html).
 
 ### Custom Errors
 
-`NewFailureResponse()` allows you to return a custom error from any of the
-`ServiceBroker` interface methods which return an error. Within this you must
-define an error, a HTTP response status code and a logging key. You can also
-use the `NewFailureResponseBuilder()` to add a custom `Error:` value in the
-response, or indicate that the broker should return an empty response rather
-than the error message.
-
-## Originating Identity
-
-The request context for every request contains the unparsed
-`X-Broker-API-Originating-Identity` header under the key
-`originatingIdentityKey`.  More details on how the Open Service Broker API
-manages request originating identity is available
-[here](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#originating-identity).
+`NewFailureResponse()` allows you to return a custom error from any of the `ServiceBroker` interface methods which return an error. Within this you must define an error, a HTTP response status code and a logging key. You can also use the `NewFailureResponseBuilder()` to add a custom `Error:` value in the response, or indicate that the broker should return an empty response rather than the error message.
 
 ## Example Service Broker
 
