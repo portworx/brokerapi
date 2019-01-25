@@ -1,13 +1,13 @@
 # brokerapi
 
 [![Build
-Status](https://travis-ci.org/pivotal-cf/brokerapi.svg?branch=master)](https://travis-ci.org/pivotal-cf/brokerapi)
+Status](https://travis-ci.org/portworx/brokerapi.svg?branch=master)](https://travis-ci.org/portworx/brokerapi)
 
 A Go package for building [V2 Open Service Broker
 API](https://github.com/openservicebrokerapi/servicebroker/) compliant Service
 Brokers.
 
-## [Docs](https://godoc.org/github.com/pivotal-cf/brokerapi)
+## [Docs](https://godoc.org/github.com/portworx/brokerapi)
 
 ## Dependencies
 
@@ -21,14 +21,14 @@ We use [dep](https://github.com/golang/dep) to manager our dependencies. Use
 ## Usage
 
 `brokerapi` defines a
-[`ServiceBroker`](https://godoc.org/github.com/pivotal-cf/brokerapi#ServiceBroker)
+[`ServiceBroker`](https://godoc.org/github.com/portworx/brokerapi#ServiceBroker)
 interface. Pass an implementation of this to
-[`brokerapi.New`](https://godoc.org/github.com/pivotal-cf/brokerapi#New), which
+[`brokerapi.New`](https://godoc.org/github.com/portworx/brokerapi#New), which
 returns an `http.Handler` that you can use to serve handle HTTP requests.
 
 Alternatively, if you already have a `*mux.Router` that you want to attach
 service broker routes to, you can use
-[`brokerapi.AttachRoutes`](https://godoc.org/github.com/pivotal-cf/brokerapi#AttachRoutes).
+[`brokerapi.AttachRoutes`](https://godoc.org/github.com/portworx/brokerapi#AttachRoutes).
 Note in this case, the Basic Authentication and Originating Identity middleware
 will not be set up, so you will have to attach them manually if required.
 
@@ -61,5 +61,5 @@ manages request originating identity is available
 ## Example Service Broker
 
 You can see the
-[cf-redis](https://github.com/pivotal-cf/cf-redis-broker/blob/2f0e9a8ebb1012a9be74bbef2d411b0b3b60352f/broker/broker.go)
+[cf-redis](https://github.com/portworx/cf-redis-broker/blob/2f0e9a8ebb1012a9be74bbef2d411b0b3b60352f/broker/broker.go)
 service broker uses the BrokerAPI package to create a service broker for Redis.

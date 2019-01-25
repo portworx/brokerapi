@@ -19,13 +19,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/pivotal-cf/brokerapi/middlewares/originating_identity_header"
+	"github.com/portworx/brokerapi/middlewares/originating_identity_header"
 	"net/http"
 	"strconv"
 
 	"code.cloudfoundry.org/lager"
 	"github.com/gorilla/mux"
-	"github.com/pivotal-cf/brokerapi/auth"
+	"github.com/portworx/brokerapi/auth"
 )
 
 const (
