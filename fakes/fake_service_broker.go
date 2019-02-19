@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/pivotal-cf/brokerapi"
+	"github.com/portworx/brokerapi"
 )
 
 type FakeServiceBroker struct {
