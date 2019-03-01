@@ -24,9 +24,9 @@ import (
 
 	"code.cloudfoundry.org/lager"
 	"github.com/gorilla/mux"
-	"github.com/portworx/brokerapi/auth"
-	"github.com/portworx/brokerapi/middlewares/originating_identity_header"
-	"github.com/portworx/brokerapi/middlewares/x_region_header"
+	"github.com/pivotal-cf/brokerapi/auth"
+	"github.com/pivotal-cf/brokerapi/middlewares/originating_identity_header"
+	"github.com/pivotal-cf/brokerapi/middlewares/x_region_header"
 )
 
 const (
