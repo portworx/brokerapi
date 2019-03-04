@@ -95,17 +95,16 @@ func AttachRoutes(router *mux.Router, serviceBroker ServiceBroker, logger lager.
 	handler := serviceBrokerHandler{serviceBroker: serviceBroker, logger: logger}
 	router.HandleFunc("/v2/catalog", handler.catalog).Methods("GET")
 
+	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/last_operation", handler.lastBindingOperation).Methods("GET")
+	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.getBinding).Methods("GET")
+	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.bind).Methods("PUT")
+	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.unbind).Methods("DELETE")
+
 	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/last_operation", handler.lastOperation).Methods("GET")
 	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.provision).Methods("PUT")
 	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.update).Methods("PATCH")
 	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.deprovision).Methods("DELETE")
 	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.getInstance).Methods("GET")
-
-	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.getBinding).Methods("GET")
-	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.bind).Methods("PUT")
-	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}", handler.unbind).Methods("DELETE")
-
-	router.HandleFunc("/v2/service_instances/{instance_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/service_bindings/{binding_id:[A-Za-z-0-9?:$&,@;=_!\\/\\-\\.\\+\\*\\'\\(\\)]+}/last_operation", handler.lastBindingOperation).Methods("GET")
 }
 
 type serviceBrokerHandler struct {
