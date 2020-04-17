@@ -21,7 +21,7 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/portworx/brokerapi/auth"
+	"github.com/pivotal-cf/brokerapi/auth"
 )
 
 var _ = Describe("Auth Wrapper", func() {

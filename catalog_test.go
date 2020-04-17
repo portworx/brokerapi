@@ -23,7 +23,7 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/portworx/brokerapi"
+	"github.com/pivotal-cf/brokerapi"
 )
 
 var _ = Describe("Catalog", func() {
