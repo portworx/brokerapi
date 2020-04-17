@@ -26,6 +26,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/portworx/brokerapi/auth"
 	"github.com/portworx/brokerapi/middlewares/originating_identity_header"
+	"github.com/portworx/brokerapi/middlewares/req_auth_header"
 	"github.com/portworx/brokerapi/middlewares/x_region_header"
 )
 
@@ -87,7 +88,7 @@ func New(serviceBroker ServiceBroker, logger lager.Logger, brokerCredentials Bro
 	router.Use(authMiddleware)
 	router.Use(originating_identity_header.AddToContext)
 	router.Use(x_region_header.AddToContext)
-
+	router.Use(req_auth_header.AddToContext)
 	return router
 }
 
