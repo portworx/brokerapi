@@ -28,6 +28,7 @@ import (
 	"github.com/portworx/brokerapi/middlewares/originating_identity_header"
 	"github.com/portworx/brokerapi/middlewares/req_auth_header"
 	"github.com/portworx/brokerapi/middlewares/x_region_header"
+	"github.com/sirupsen/logrus"
 )
 
 const (
@@ -141,6 +142,7 @@ func (h serviceBrokerHandler) catalog(w http.ResponseWriter, req *http.Request) 
 }
 
 func (h serviceBrokerHandler) provision(w http.ResponseWriter, req *http.Request) {
+	logrus.Debugf("######## service broker provision request, brokerapi %v", req)
 	vars := mux.Vars(req)
 	instanceID := vars["instance_id"]
 
@@ -225,7 +227,7 @@ func (h serviceBrokerHandler) provision(w http.ResponseWriter, req *http.Request
 	if err != nil {
 		switch err := err.(type) {
 		case *FailureResponse:
-			logger.Error(err.LoggerAction(), err)
+			logrus.Errorf("######## service broker provision error %v", err)
 			h.respond(w, err.ValidatedStatusCode(logger), err.ErrorResponse())
 		default:
 			logger.Error(unknownErrorKey, err)
