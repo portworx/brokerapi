@@ -142,13 +142,14 @@ func (h serviceBrokerHandler) catalog(w http.ResponseWriter, req *http.Request) 
 }
 
 func (h serviceBrokerHandler) provision(w http.ResponseWriter, req *http.Request) {
-	logrus.Debugf("######## service broker provision request, brokerapi %v", req)
 	vars := mux.Vars(req)
 	instanceID := vars["instance_id"]
 
 	logger := h.logger.Session(provisionLogKey, lager.Data{
 		instanceIDLogKey: instanceID,
 	})
+
+	logger.Debug("######## service broker provision request, brokerapi ")
 
 	if _, err := checkBrokerAPIVersionHdr(req); err != nil {
 		h.respond(w, http.StatusPreconditionFailed, ErrorResponse{
